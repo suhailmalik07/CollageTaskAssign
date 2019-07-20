@@ -4,6 +4,7 @@ dataclasses==0.6
 Django==2.2.3
 django-crispy-forms==1.7.2
 dnspython==1.16.0
+gunicorn==19.9.0
 isort==4.3.21
 lazy-object-proxy==1.4.1
 mccabe==0.6.1
