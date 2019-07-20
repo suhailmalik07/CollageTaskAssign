@@ -1,5 +1,13 @@
 # CollageTaskAssign
+A web app for a schooling system 
+Teacher can assign task to students 
+teacher can regsiter, login, update profile, assign task
+student can regsiter, login, update profile
 
+wanna visit? go - https://collagetask.herokuapp.com/
+
+
+# How to run it by yourself
 Make Sure you have Python 3 installed in your system
 
 Clone this repo to your pc using
