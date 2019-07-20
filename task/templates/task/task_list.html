@@ -1,0 +1,14 @@
+{% extends 'task/base.html' %}
+{% block content %}
+{% for task in object_list %}
+<div class="container col-sm-8">
+    <div class="border rounded p-4 m-2 bg-white">
+        <h2 class=""><a href="{% url 'task' task.id%}" class="text-dark">{{task.title}}</a></h2>
+        <p class="text-dark">{{task.description}}</p>
+        {% if task.task_image %}
+        <img src="{{ task.task_image.url }}" alt="" class="border rounded" style="width: 300px;">
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'task/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container bg-white border rounded p-4 col-sm-8">
+    <form action="" method="post" class="my-2">{% csrf_token %}
+        <legend class="text-center font-weight-bold text-dark text-uppercase">Assign a Task</legend>
+        {{ form|crispy }}
+        <input type="submit" class="btn btn-outline-primary" value="Assign">
+    </form>
+</div>
+
+{% endblock %}

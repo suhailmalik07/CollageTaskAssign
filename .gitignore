@@ -1,0 +1,7 @@
+/.env
+/.vscode
+/media
+/TaskManager/__pycache__
+/task/__pycache__
+/task/migrations/__pycache__
+db.sqlite3

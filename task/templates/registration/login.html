@@ -1,0 +1,12 @@
+{% extends 'task/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form action="" method="post" class="my-2">{% csrf_token %}
+    <legend class="text-center font-weight-bold text-dark text-uppercase">Login</legend>
+    {{ form|crispy }}
+    <input type="submit" class="btn btn-outline-primary" value="Log In">
+</form>
+<div class="mb-2">
+    <small class="text-muted">Don't have an account? <a href="#">Register</a></small>
+</div>
+{% endblock %}
