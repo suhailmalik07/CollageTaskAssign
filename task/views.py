@@ -7,11 +7,12 @@ from django.contrib.auth.views import LoginView
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
-#Custom Imports
+# Custom Imports
 from .models import Task, User
 from .forms import RegisterForm, StudentLoginForm, UserProfileForm
 
 # Create your views here.
+
 
 class HomeView(ListView):
     model = Task
@@ -36,14 +37,15 @@ class UserProfileView(View):
         form_class = UserProfileForm(request.POST, instance=request.user)
         if form_class.is_valid():
             form_class.save()
-            messages.success(request, 'Your Profile has been updated successfully!', extra_tags='success')
+            messages.success(
+                request, 'Your Profile has been updated successfully!', extra_tags='success')
             return redirect('user-profile')
         return render(request, self.template_name, {'form': form_class, 'title': 'Update'})
 
 
 class StudentRegisterView(CreateView):
     template_name = 'registration/user_form.html'
-    
+
     def get(self, request):
         form = RegisterForm()
         return render(request, self.template_name, {"form": form, "title": "student"})
@@ -54,14 +56,15 @@ class StudentRegisterView(CreateView):
             studentform = form.save(commit=False)
             studentform.is_student = True
             studentform.save()
-            messages.success(request, 'Welcome Student! Your account has been created successfully, you can login now!', extra_tags='success')
+            messages.success(
+                request, 'Welcome Student! Your account has been created successfully, you can login now!', extra_tags='success')
             return redirect('home')
-        return render(request, self.template_name, {"form": form, "title": "student"})        
+        return render(request, self.template_name, {"form": form, "title": "student"})
 
 
 class TeacherRegisterView(CreateView):
     template_name = 'registration/user_form.html'
-    
+
     def get(self, request):
         form = RegisterForm()
         return render(request, self.template_name, {"form": form, "title": "teacher"})
@@ -72,9 +75,10 @@ class TeacherRegisterView(CreateView):
             studentform = form.save(commit=False)
             studentform.is_teacher = True
             studentform.save()
-            messages.success(request, 'Welcome Teacher! Your account has been created successfully, you can login now!', extra_tags='success')
+            messages.success(
+                request, 'Welcome Teacher! Your account has been created successfully, you can login now!', extra_tags='success')
             return redirect('home')
-        return render(request, self.template_name, {"form": form, "title": "teacher"}) 
+        return render(request, self.template_name, {"form": form, "title": "teacher"})
 
 
 class AssignTaskView(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, CreateView):

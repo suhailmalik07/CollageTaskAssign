@@ -10,13 +10,17 @@ class User(AbstractUser):
     def get_absolute_url(self):
         return reverse('home')
 
+
 class Task(models.Model):
-    student = models.ForeignKey(User, on_delete=models.CASCADE, related_name='student', limit_choices_to={'is_student':True})
+    student = models.ForeignKey(User, on_delete=models.CASCADE,
+                                related_name='student', limit_choices_to={'is_student': True})
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=500)
-    task_image = models.ImageField(upload_to='profile_pics', null=False, blank=True)
+    task_image = models.ImageField(
+        upload_to='profile_pics', null=False, blank=True)
     is_completed = models.BooleanField(default=False)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='teacher')
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='teacher')
     pub_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -27,4 +31,3 @@ class Task(models.Model):
 
     def get_absolute_url(self):
         return reverse('task', args=[self.pk])
-        
