@@ -17,22 +17,21 @@
 <body class="bg-light">
 
     <!-- Navbar -->
-    <div class="navbar-custom">
-        {% include 'task/navbar.html' %}
-    </div>
+    {% include 'task/navbar.html' %}
     <!-- /Navbar -->
 
     <!-- Main Content -->
-    <div class="content container my-4 col-sm-6" style="margin-top: 40px; min-height: 70vh;">
-        {% include 'task/messages.html' %}
-        {% block content %}
-        {% endblock %}
-    </div>
+    <main role="main" class="container">
+        <div class="my-4 col-sm-8" style="min-height: 70vh;">
+            {% include 'task/messages.html' %}
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+    <!-- /Main Content -->
 
     <!-- Footer -->
-    <div class="footer">
-        {% include 'task/footer.html' %}
-    </div>
+    {% include 'task/footer.html' %}
     <!-- /Footer -->
 
     <!-- JS -->
