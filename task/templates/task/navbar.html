@@ -12,6 +12,11 @@
                     <a class="nav-link" href="{% url 'assign-task' %}">Assign Task</a>
                 </li>
                 {% endif %}
+                {% if user.is_student %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'tasks-me' %}">My Tasks</a>
+                </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'user-profile' %}">Profile</a>
                 </li>

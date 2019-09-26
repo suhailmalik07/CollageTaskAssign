@@ -3,6 +3,9 @@ from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.views import LoginView
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 
 #Custom Imports
 from .models import Task, User
@@ -15,7 +18,11 @@ class HomeView(ListView):
 
 
 class MyTaskView(ListView):
-    model = Task
+    fields = '__all__'
+    template_name = 'task/task_me.html'
+
+    def get_queryset(self):
+        queryset = Task.objects.filter(student=self.request.user)
 
 
 class UserProfileView(View):
@@ -29,6 +36,7 @@ class UserProfileView(View):
         form_class = UserProfileForm(request.POST, instance=request.user)
         if form_class.is_valid():
             form_class.save()
+            messages.success(request, 'Your Profile has been updated successfully!', extra_tags='success')
             return redirect('user-profile')
         return render(request, self.template_name, {'form': form_class, 'title': 'Update'})
 
@@ -46,6 +54,7 @@ class StudentRegisterView(CreateView):
             studentform = form.save(commit=False)
             studentform.is_student = True
             studentform.save()
+            messages.success(request, 'Welcome Student! Your account has been created successfully, you can login now!', extra_tags='success')
             return redirect('home')
         return render(request, self.template_name, {"form": form, "title": "student"})        
 
@@ -63,14 +72,16 @@ class TeacherRegisterView(CreateView):
             studentform = form.save(commit=False)
             studentform.is_teacher = True
             studentform.save()
+            messages.success(request, 'Welcome Teacher! Your account has been created successfully, you can login now!', extra_tags='success')
             return redirect('home')
         return render(request, self.template_name, {"form": form, "title": "teacher"}) 
 
 
-class AssignTaskView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class AssignTaskView(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Task
     fields = ['student', 'title', 'description', 'task_image']
     success_url = '/'
+    success_message = "Task has been assigned to  %(student)s!"
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -97,3 +108,6 @@ class TaskUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             return True
         return False
 
+
+class LoginFormView(SuccessMessageMixin, LoginView):
+    success_message = "You've been logged in succesfully!"

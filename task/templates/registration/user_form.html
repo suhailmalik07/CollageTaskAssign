@@ -1,19 +1,18 @@
 {% extends 'task/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-
-<form action="" method="post" class="my-2">{% csrf_token %}
+<form action="" method="post" class="my-4">{% csrf_token %}
     {% if title %}
-        <legend class="text-center font-weight-bold text-dark text-uppercase">{{title}} Profile</legend>
+    <legend class="text-center font-weight-bold text-dark text-uppercase">{{title}} Profile</legend>
     {% else %}
-        <legend class="text-center font-weight-bold text-dark text-uppercase">Form</legend>
+    <legend class="text-center font-weight-bold text-dark text-uppercase">Form</legend>
     {% endif %}
     {{ form|crispy }}
-    
+
     {% if title %}
-        <input type="submit" class="btn btn-outline-primary" value="{{title}}">
+    <input type="submit" class="btn btn-outline-primary" value="{{title}}">
     {% else %}
-        <input type="submit" class="btn btn-outline-primary" value="Register">
+    <input type="submit" class="btn btn-outline-primary" value="Register">
     {% endif %}
 </form>
 {% if user.is_authenticated == False %}

@@ -15,19 +15,24 @@
 </head>
 
 <body class="bg-light">
-    
+
     <!-- Navbar -->
-    {% include 'task/navbar.html' %}
+    <div class="navbar-custom">
+        {% include 'task/navbar.html' %}
+    </div>
     <!-- /Navbar -->
 
     <!-- Main Content -->
-    <div class="content container mt-4" style="margin-top: 40px;">
+    <div class="content container my-4 col-sm-6" style="margin-top: 40px; min-height: 70vh;">
+        {% include 'task/messages.html' %}
         {% block content %}
         {% endblock %}
     </div>
 
     <!-- Footer -->
-    {% include 'task/footer.html' %}
+    <div class="footer">
+        {% include 'task/footer.html' %}
+    </div>
     <!-- /Footer -->
 
     <!-- JS -->

@@ -1,27 +1,25 @@
 {% extends 'task/base.html' %}
 {% block content %}
-<div class="container col-sm-8">
-    <div class="border rounded p-4 m-2 bg-white">
-        {% if user == task.author %}
-        <div class="row">
-            <h2 class="col-sm-8">{{task.title}}</h2>
-            <div class="text-right col-sm-4">
-                <a href="" class="btn btn-secondary">Update</a>
-                <a href="" class="btn btn-danger">Delete</a>
-            </div>
+<div class="border rounded p-4 m-2 bg-white">
+    {% if user == task.author %}
+    <div class="row">
+        <h2 class="col-sm-8">{{task.title}}</h2>
+        <div class="text-right col-sm-4">
+            <a href="#" class="btn btn-secondary">Update</a>
+            <a href="#" class="btn btn-danger">Delete</a>
         </div>
-        {% else %}
-        <h2 class="">{{task.title}}</h2>
-        {% endif %}
-        <p class="text-dark">{{task.description}}</p>
-        {% if task.task_image %}
-        <img src="{{ task.task_image.url }}" alt="" class="border rounded" style="width: 300px;">
-        {% endif %}
     </div>
-    <div class="row border rounded m-2">
-        <p class="col-sm-6">Task Assigned to - {{task.student.username}}</p>
-        <p class="col-sm-6">Task Assigned by - {{task.author.username}}</p>
-    </div>
+    {% else %}
+    <h2 class="">{{task.title}}</h2>
+    {% endif %}
+    <p class="text-dark">{{task.description}}</p>
+    {% if task.task_image %}
+    <img src="{{ task.task_image.url }}" alt="" class="border rounded" style="width: 300px;">
+    {% endif %}
+</div>
+<div class="row border rounded m-2 p-2">
+    <p class="col-sm-6">Assigned to - {{task.student.username}}</p>
+    <p class="col-sm-6">Assigned by - {{task.author.username}}</p>
 </div>
 
 {% endblock %}
