@@ -4,12 +4,15 @@
 <form action="" method="post" class="my-4">{% csrf_token %}
     {% if title %}
     <legend class="text-center font-weight-bold text-dark text-uppercase">{{title}} Profile</legend>
+    {% elif user.is_authenticated == False %}
+    <legend class="text-center font-weight-bold text-dark text-uppercase">Register {{title}}</legend>
     {% else %}
     <legend class="text-center font-weight-bold text-dark text-uppercase">Form</legend>
     {% endif %}
+    <!-- Crispy Forms -->
     {{ form|crispy }}
 
-    {% if title %}
+    {% if button_value %}
     <input type="submit" class="btn btn-outline-primary" value="{{title}}">
     {% else %}
     <input type="submit" class="btn btn-outline-primary" value="Register">
