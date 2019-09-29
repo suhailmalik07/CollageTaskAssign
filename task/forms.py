@@ -22,8 +22,8 @@ class UserProfileForm(forms.ModelForm):
         model = User
         fields = ['username', 'email']
 
+
 class AssignTaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ['student', 'title', 'description', 'task_image']
-        
