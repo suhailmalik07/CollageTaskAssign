@@ -12,7 +12,7 @@ Make Sure you have Python 3 installed in your system
 
 Clone this repo to your pc using
 
-"git clone_____"
+"git clone https://github.com/suhailmalik07/CollageTaskAssign.git"
 
 Go to inside repo folder in you pc open terminal or powershell
 Create a Virutal Environment (run command written below just copy paste)
