@@ -17,6 +17,7 @@ INSTALLED_APPS = [
 
     'crispy_forms',
     'rest_framework',
+    'corsheaders',
 
     'task.apps.TaskConfig',
 ]
@@ -29,6 +30,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'TaskManager.urls'
@@ -111,3 +114,5 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # LOGIN_REDIRECT_URL = '/'
 django_heroku.settings(locals())
+
+CORS_ORIGIN_ALLOW_ALL = True
