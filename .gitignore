@@ -5,11 +5,11 @@ media
 .DS_Store
 *.sqlite3
 .env
+.venv
 .vscode
-**/migrations/*
+**/migrations/**
 
 # Accept these files in the repository
 !.gitignore
 !.travis.yml
 !**/migrations/__init__.py
-
